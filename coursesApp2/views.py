@@ -7,3 +7,6 @@ def index(request):
         "all_courses": Course.objects.all()
     }
     return render(request, "index.html", context)
+
+def create_course(request):
+    pass
