@@ -1,5 +1,9 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
+from .models import *
 
 # Create your views here.
 def index(request):
-    return HttpResponse("This is my response!")
+    context = {
+        "all_courses": Course.objects.all()
+    }
+    return render(request, "index.html", context)
