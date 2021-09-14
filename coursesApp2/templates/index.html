@@ -9,6 +9,13 @@
 </head>
 <body>
     <h1>Add a new course</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <form action="/courses/create" method="POST">
         {% csrf_token %}
         <label>Name:<input type="text" name="course_name"></label>
@@ -28,10 +35,10 @@
         <tbody>
             {% for course in all_courses %}
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{course.name}}</td>
+                <td>{{course.description}}</td>
+                <td>{{course.created_at}}</td>
+                <td><a href="/courses/destroy/{{course.id}}">remove</a></td>
             </tr>
             {% endfor %}
         </tbody>
